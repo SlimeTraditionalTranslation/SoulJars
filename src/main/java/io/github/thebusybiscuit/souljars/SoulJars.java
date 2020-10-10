@@ -22,8 +22,6 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.Updater;
 
 public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
 
@@ -42,18 +40,9 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
         // Setting up bStats
         new Metrics(this, 5581);
 
-        if (getDescription().getVersion().startsWith("DEV - ")) {
-            Updater updater = new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/SoulJars/master");
-
-            // Only run the Updater if it has not been disabled
-            if (cfg.getBoolean("options.auto-update")) {
-                updater.start();
-            }
-        }
-
-        emptyJar = new SlimefunItemStack("SOUL_JAR", JAR_TEXTURE, "&bSoul Jar &7(Empty)", "", "&rKill a Mob while having this", "&rItem in your Inventory to bind", "&rtheir Soul to this Jar");
-        category = new Category(new NamespacedKey(this, "soul_jars"), new CustomItem(emptyJar, "&bSoul Jars", "", "&a> Click to open"));
-        recipeType = new RecipeType(new NamespacedKey(this, "mob_killing"), new CustomItem(Material.DIAMOND_SWORD, "&cKill the specified Mob", "&cwhile having an empty Soul Jar", "&cin your Inventory"));
+        emptyJar = new SlimefunItemStack("SOUL_JAR", JAR_TEXTURE, "&b靈魂罐 &7(空)", "", "&r當該物品在背包時", "&r殺死生物會綁定", "&r它們的靈魂到這罐子裡");
+        category = new Category(new NamespacedKey(this, "soul_jars"), new CustomItem(emptyJar, "&b靈魂儲存罐", "", "&a> 點擊開啟"));
+        recipeType = new RecipeType(new NamespacedKey(this, "mob_killing"), new CustomItem(Material.DIAMOND_SWORD, "&c殺死指定的生物", "&c當你有一個空的靈魂罐", "&c在你的背包內"));
 
         new SlimefunItem(category, emptyJar, RecipeType.ANCIENT_ALTAR, new ItemStack[] { SlimefunItems.EARTH_RUNE, new ItemStack(Material.SOUL_SAND), SlimefunItems.WATER_RUNE, new ItemStack(Material.SOUL_SAND), SlimefunItems.NECROTIC_SKULL, new ItemStack(Material.SOUL_SAND), SlimefunItems.AIR_RUNE, new ItemStack(Material.SOUL_SAND), SlimefunItems.FIRE_RUNE }, new CustomItem(emptyJar, 3)).register(this);
         new JarsListener(this);
@@ -64,7 +53,7 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
                 registerSoul(type);
             }
             catch (Exception x) {
-                getLogger().log(Level.SEVERE, "{0}: Possibly invalid mob type: {1}", new Object[] { x.getClass().getSimpleName(), mob });
+                getLogger().log(Level.SEVERE, "{0}: 可能是無效生物類型: {1}", new Object[] { x.getClass().getSimpleName(), mob });
             }
         }
 
@@ -83,16 +72,16 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
             mobEgg = Material.ZOMBIE_SPAWN_EGG;
         }
 
-        SlimefunItemStack jarItem = new SlimefunItemStack(type.name() + "_SOUL_JAR", JAR_TEXTURE, "&cSoul Jar &7(" + name + ")", "", "&7Infused Souls: &e1");
-        SlimefunItem jar = new UnplaceableBlock(category, jarItem, recipeType, new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&rKill " + souls + "x " + name), null, null, null });
+        SlimefunItemStack jarItem = new SlimefunItemStack(type.name() + "_SOUL_JAR", JAR_TEXTURE, "&c靈魂罐 &7(" + name + ")", "", "&7注入靈魂數: &e1");
+        SlimefunItem jar = new UnplaceableBlock(category, jarItem, recipeType, new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&r殺死 " + souls + "x " + name), null, null, null });
         jar.register(this);
 
-        SlimefunItemStack filledJarItem = new SlimefunItemStack("FILLED_" + type.name() + "_SOUL_JAR", JAR_TEXTURE, "&cFilled Soul Jar &7(" + name + ")", "", "&7Infused Souls: &e" + souls);
-        SlimefunItem filledJar = new FilledJar(category, filledJarItem, recipeType, new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&rKill " + souls + "x " + name), null, null, null });
+        SlimefunItemStack filledJarItem = new SlimefunItemStack("FILLED_" + type.name() + "_SOUL_JAR", JAR_TEXTURE, "&c裝滿的靈魂罐 &7(" + name + ")", "", "&7注入靈魂數: &e" + souls);
+        SlimefunItem filledJar = new FilledJar(category, filledJarItem, recipeType, new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&r殺死 " + souls + "x " + name), null, null, null });
         filledJar.register(this);
 
-        SlimefunItemStack spawnerItem = new SlimefunItemStack(type.toString() + "_BROKEN_SPAWNER", Material.SPAWNER, "&cBroken Spawner", "&7Type: &b" + name, "", "&cFractured, must be repaired in an Ancient Altar");
-        new SlimefunItem(category, spawnerItem, RecipeType.ANCIENT_ALTAR, new ItemStack[] { new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, filledJarItem, SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS) }, new SlimefunItemStack("BROKEN_SPAWNER", Material.SPAWNER, "&cBroken Spawner", "&7Type: &b" + name, "", "&cFractured, must be repaired in an Ancient Altar")).register(this);
+        SlimefunItemStack spawnerItem = new SlimefunItemStack(type.toString() + "_BROKEN_SPAWNER", Material.SPAWNER, "&c已損壞的生怪磚", "&7類型: &b" + name, "", "&c你必須用「古代祭壇」修復");
+        new SlimefunItem(category, spawnerItem, RecipeType.ANCIENT_ALTAR, new ItemStack[] { new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, filledJarItem, SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS) }, new SlimefunItemStack("BROKEN_SPAWNER", Material.SPAWNER, "&c已損壞的生怪磚", "&7類型: &b" + name, "", "&c你必須用「古代祭壇」修復")).register(this);
     }
 
     public Map<EntityType, Integer> getRequiredSouls() {
@@ -106,7 +95,7 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
 
     @Override
     public String getBugTrackerURL() {
-        return "https://github.com/TheBusyBiscuit/SoulJars/issues";
+        return "https://github.com/xMikux/SoulJars/issues";
     }
 
 }
