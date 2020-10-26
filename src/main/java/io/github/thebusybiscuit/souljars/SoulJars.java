@@ -19,7 +19,7 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
+//import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 
@@ -38,7 +38,7 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
         cfg = new Config(this);
 
         // Setting up bStats
-        new Metrics(this, 5581);
+        //new Metrics(this, 5581);
 
         emptyJar = new SlimefunItemStack("SOUL_JAR", JAR_TEXTURE, "&b靈魂罐 &7(空)", "", "&r當該物品在背包時", "&r殺死生物會綁定", "&r它們的靈魂到這罐子裡");
         category = new Category(new NamespacedKey(this, "soul_jars"), new CustomItem(emptyJar, "&b靈魂儲存罐", "", "&a> 點擊開啟"));

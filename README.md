@@ -7,7 +7,8 @@
 你可以使這些靈魂罐頭製作已損壞的生怪磚,對其進行修復,從而變成任何你喜歡的生物生怪磚.
 該附家具有設定來啟用/禁用任何靈魂罐. 因此請查看靈魂罐的config.yml.
 
-[官方原碼連結](https://github.com/TheBusyBiscuit/SoulJars)
+此為**非官方**版本, 請勿在該作者的問題追蹤內回報!
+[原作者連結](https://github.com/TheBusyBiscuit/SoulJars)
 
 ## 下載靈魂儲存罐
 繁體翻譯版: [構建頁面](https://xmikux.github.io/builds/xMikux/SoulJars/master)<br>
