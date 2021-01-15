@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.BrokenSpawner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -51,8 +52,7 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
             try {
                 EntityType type = EntityType.valueOf(mob);
                 registerSoul(type);
-            }
-            catch (Exception x) {
+            } catch (Exception x) {
                 getLogger().log(Level.SEVERE, "{0}: 可能是無效生物類型: {1}", new Object[] { x.getClass().getSimpleName(), mob });
             }
         }
@@ -72,16 +72,24 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
             mobEgg = Material.ZOMBIE_SPAWN_EGG;
         }
 
+        // @formatter:off
         SlimefunItemStack jarItem = new SlimefunItemStack(type.name() + "_SOUL_JAR", JAR_TEXTURE, "&c靈魂罐 &7(" + name + ")", "", "&7注入靈魂數: &e1");
-        SlimefunItem jar = new UnplaceableBlock(category, jarItem, recipeType, new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&r殺死 " + souls + "x " + name), null, null, null });
+        SlimefunItem jar = new UnplaceableBlock(category, jarItem, recipeType, 
+        new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&r殺死 " + souls + "x " + name), null, null, null });
         jar.register(this);
 
         SlimefunItemStack filledJarItem = new SlimefunItemStack("FILLED_" + type.name() + "_SOUL_JAR", JAR_TEXTURE, "&c裝滿的靈魂罐 &7(" + name + ")", "", "&7注入靈魂數: &e" + souls);
-        SlimefunItem filledJar = new FilledJar(category, filledJarItem, recipeType, new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&r殺死 " + souls + "x " + name), null, null, null });
+        SlimefunItem filledJar = new FilledJar(category, filledJarItem, recipeType, 
+        new ItemStack[] { null, null, null, emptyJar, null, new CustomItem(mobEgg, "&r殺死 " + souls + "x " + name), null, null, null });
         filledJar.register(this);
 
-        SlimefunItemStack spawnerItem = new SlimefunItemStack(type.toString() + "_BROKEN_SPAWNER", Material.SPAWNER, "&c已損壞的生怪磚", "&7類型: &b" + name, "", "&c你必須用「古代祭壇」修復");
-        new SlimefunItem(category, spawnerItem, RecipeType.ANCIENT_ALTAR, new ItemStack[] { new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, filledJarItem, SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS) }, new SlimefunItemStack("BROKEN_SPAWNER", Material.SPAWNER, "&c已損壞的生怪磚", "&7類型: &b" + name, "", "&c你必須用「古代祭壇」修復")).register(this);
+        BrokenSpawner brokenSpawner = SlimefunItems.BROKEN_SPAWNER.getItem(BrokenSpawner.class);
+
+        SlimefunItemStack spawnerItem = new SlimefunItemStack(type.toString() + "_BROKEN_SPAWNER", Material.SPAWNER, "&c已損壞的生怪磚 &7(" + name + ")");
+        new SlimefunItem(category, spawnerItem, RecipeType.ANCIENT_ALTAR, 
+        new ItemStack[] { new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, filledJarItem, SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS), SlimefunItems.EARTH_RUNE, new ItemStack(Material.IRON_BARS) }, 
+        brokenSpawner.getItemForEntityType(type)).register(this);
+        // @formatter:on
     }
 
     public Map<EntityType, Integer> getRequiredSouls() {
