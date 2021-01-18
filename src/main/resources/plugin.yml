@@ -2,10 +2,10 @@ name: SoulJars
 version: ${project.version}
 author: TheBusyBiscuit
 description: 黏液科技附加 靈魂儲存罐 繁體翻譯版.
-website: http://TheBusyBiscuit.github.io/
+website: https://github.com/TheBusyBiscuit/souljars
 
+api-version: 1.14
 main: io.github.thebusybiscuit.souljars.SoulJars
-depend: [CS-CoreLib, Slimefun]
-softdepend: [EmeraldEnchants]
 
-api-version: 1.13
+depend:
+- Slimefun
