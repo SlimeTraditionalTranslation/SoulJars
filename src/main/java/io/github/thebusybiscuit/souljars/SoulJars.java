@@ -58,7 +58,7 @@ public class SoulJars extends JavaPlugin implements Listener, SlimefunAddon {
                 EntityType type = EntityType.valueOf(mob);
                 registerSoul(type);
             } catch (Exception x) {
-                getLogger().log(Level.SEVERE, "{0}: 可能是無效生物類型: {1}", new Object[] { x.getClass().getSimpleName(), mob });
+                getLogger().log(Level.WARNING, "{0}: 可能是無效生物類型: {1}", new Object[] { x.getClass().getSimpleName(), mob });
             }
         }
 
