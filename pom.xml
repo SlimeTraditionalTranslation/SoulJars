@@ -43,6 +43,7 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>*</include>
+                    <include>translations/*.po</include>
                 </includes>
             </resource>
             <resource>
@@ -118,6 +119,27 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mini2Dx</groupId>
+            <artifactId>gettext-lib</artifactId>
+            <version>1.11.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.SlimeTraditionalTranslation</groupId>
+            <artifactId>dough</artifactId>
+            <version>v1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.SlimeTraditionalTranslation</groupId>
+            <artifactId>Locale-API</artifactId>
+            <version>v1.0.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

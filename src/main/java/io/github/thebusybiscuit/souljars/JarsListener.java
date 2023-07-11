@@ -45,7 +45,7 @@ public class JarsListener implements Listener {
 
             if (jar.isItem(stack)) {
                 List<String> lore = stack.getItemMeta().getLore();
-                int souls = Integer.parseInt(ChatColor.stripColor(lore.get(1)).split(": ")[1]) + 1;
+                int souls = Integer.parseInt(ChatColor.stripColor(lore.get(1)).split("：")[1]) + 1;
                 int requiredSouls = mobs.get(e.getEntityType());
 
                 if (souls >= requiredSouls) {
@@ -58,7 +58,7 @@ public class JarsListener implements Listener {
                     }
                 }
                 else {
-                    lore.set(1, ChatColor.translateAlternateColorCodes('&', lore.get(1).split(": ")[0] + ": &e" + souls));
+                    lore.set(1, ChatColor.translateAlternateColorCodes('&', lore.get(1).split("：")[0] + "：&e" + souls));
 
                     if (stack.getAmount() > 1) {
                         stack.setAmount(stack.getAmount() - 1);

@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: slimetranslations\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-11 08:25+0000\n"
+"PO-Revision-Date: 2023-07-11 08:57\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Traditional\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: slimetranslations\n"
+"X-Crowdin-Project-ID: 585775\n"
+"X-Crowdin-Language: zh-TW\n"
+"X-Crowdin-File: /SoulJars/messages.pot\n"
+"X-Crowdin-File-ID: 3043\n"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:74
+msgid "&bSoul Jar &7(Empty)"
+msgstr "&b靈魂罐&7（空）"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:74
+msgid "&rKill a Mob while having this"
+msgstr "&f當該物品在背包時"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:74
+msgid "&rItem in your Inventory to bind"
+msgstr "&f殺死生物會綁定"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:74
+msgid "&rtheir Soul to this Jar"
+msgstr "&f它們的靈魂到罐子裡"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:75
+msgid "&bSoul Jars"
+msgstr "&b靈魂儲存罐"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:75
+msgid "&a> Click to open"
+msgstr "&a> 點擊開啟"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:76
+msgid "&cKill the specified Mob"
+msgstr "&c殺死指定生物"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:76
+msgid "&cwhile having an empty Soul Jar"
+msgstr "&c當你有空的靈魂罐"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:76
+msgid "&cin your Inventory"
+msgstr "&c在你背包內時"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:86
+#, java-format
+msgid "{0}: Possibly invalid mob type: {1}"
+msgstr "{0}：可能無效的生物類型：{1}"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:107
+#, java-format
+msgid "&cSoul Jar &7({0})"
+msgstr "&c靈魂罐&7（{0}）"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:107
+msgid "&7Infused Souls: &e1"
+msgstr "&7注入靈魂數：&e1"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:109
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:114
+#, java-format
+msgid "&rKill {0}x {1}"
+msgstr "&r殺死 x{0} {1}"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:112
+#, java-format
+msgid "&cFilled Soul Jar &7({0})"
+msgstr "&c裝滿的靈魂罐&7（{0}）"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:112
+#, java-format
+msgid "&7Infused Souls: &e{0}"
+msgstr "&7注入靈魂數：&e{0}"
+
+#: src/main/java/io/github/thebusybiscuit/souljars/SoulJars.java:119
+#, java-format
+msgid "&cBroken Spawner &7({0})"
+msgstr "&c已損壞的生怪磚&7（{0}）"

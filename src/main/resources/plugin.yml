@@ -1,7 +1,7 @@
 name: SoulJars
 version: ${project.version}
 author: TheBusyBiscuit
-description: 黏液科技附加 靈魂儲存罐 繁體翻譯版.
+description: 黏液科技附加「靈魂儲存罐」繁體中文版。
 website: https://github.com/TheBusyBiscuit/souljars
 
 api-version: 1.14
